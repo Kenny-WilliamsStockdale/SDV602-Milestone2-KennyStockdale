@@ -1,38 +1,28 @@
 import datacontroller as dc
-import csv
-import pandas as pd
 
-def readLocation(file_path):
-    data = pd.read_csv(file_path,
-                       usecols=['decimalLatitude', 'decimalLongitude'])
-    return data
+
+# def locationData():
+#     return dc.data2
 
 
 def merge(newFile, currentFile):
     dc.append(newFile, currentFile)
 
 
-def fishAmountYear():  
+def fishAmountYear():
     data = dc.data
     dictline = {}
     for row in data:
         if row[19] != "":
-            # if row[19] in dictline.keys():
-            #     dictline[row[19]].append(row[10])
-            # else:
-            #     dictline[row[19]] = [row[10]]
             if row[19] in dictline.keys():
                 dictline[row[19]] += int(row[10])
             else:
                 dictline[row[19]] = int(row[10])
-            
-    # labels = list(dictline.keys())
-    # values = list(dictline.values())
-    
+
     return (dictline)
 
 
-def sizeFish(): # piechart data
+def sizeFish():  # piechart data
     data = dc.data
     barData = {
         '1-50': 0,
@@ -60,8 +50,3 @@ def sizeFish(): # piechart data
     labels = list(barData.keys())
     values = list(barData.values())
     return labels, values
-    
-
-if __name__ == '__main__':
-    print(readLocation('./data/test_data_1.csv'))
-    

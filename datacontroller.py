@@ -1,6 +1,8 @@
 import csv
+import pandas as pd
 
 data = []
+
 
 def upload(file_path):
     global data
@@ -41,3 +43,9 @@ def check_app_has_data():
         if dc.data == []:
             error("App did not receive data. Exiting application.")
             sys.exit()
+
+# def readLocation(file_path):
+#     global data2
+#     data2 = pd.read_csv(file_path,
+#                        usecols=['decimalLatitude', 'decimalLongitude'])
+#     return data2

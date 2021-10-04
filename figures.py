@@ -13,8 +13,9 @@ def fish():
     plt.title('Size of Angler Fish in New Zealand waters (millimeters)')
     return plt.gcf()
 
-def line_plot(): 
-    labels = []  
+
+def line_plot():
+    labels = []
     values = []
     data = df.fishAmountYear()
     # sorting
@@ -26,20 +27,23 @@ def line_plot():
     return plt.gcf()
 
 
-def markLocation():
-    data = df.readLocation()
-    countries = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
+# def markLocation():
+#     data = df.locationData()
 
-        countries[countries["name"] == "New Zealand"].plot(color="lightgrey", ax=ax)
+#     fig , ax = plt.subplots(figsize=(10, 4.2))
+#     countries = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
 
-        # Plot map
+#     countries[countries["name"] == "New Zealand"].plot(
+#         color="lightgrey", ax=ax)
 
-        data.plot(x="decimalLongitude", y="decimalLatitude", kind="scatter", colormap="YlOrRd", 
+#     # Plot map
 
-        title=f"New Zealand Location", ax=ax)
+#     data.plot(x="decimalLongitude", y="decimalLatitude", kind="scatter", colormap="YlOrRd",
 
-        ax.grid(b=True, alpha=0.5)
+#               title=f"New Zealand Location", ax=ax)
 
-        ax.set_xlabel('Longtitude')
+#     ax.grid(b=True, alpha=0.5)
+#     return plt.gcf()
+#     # ax.set_xlabel('Longtitude')
 
-        ax.set_ylabel('Latitude')
+#     # ax.set_ylabel('Latitude')

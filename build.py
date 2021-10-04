@@ -25,7 +25,7 @@ def getfigure(des_name):
         if des_name == 'DES2':
             return figures.line_plot()
         if des_name == 'DES3':
-            return figures.scatter_plots()
+            return figures.change()
 
 
 def show(nextScreen, previousScreen, des_name):
