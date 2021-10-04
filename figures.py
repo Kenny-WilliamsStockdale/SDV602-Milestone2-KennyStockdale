@@ -13,11 +13,13 @@ def fish():
     plt.title('Size of Angler Fish in New Zealand waters (millimeters)')
     return plt.gcf()
 
-def line_plot1():   
-    data_values = [-1, -4.5, 16, 233]
-    plt.plot(data_values)
-     
+def line_plot():   
+    labels, values = df.fishAmountYear()
+    fig1, ax1 = plt.subplots(figsize=(10, 4.2))
+    plt.plot(labels, values)
+    print(labels,values)
     return plt.gcf()
+
 
 def scatter_plots():
 

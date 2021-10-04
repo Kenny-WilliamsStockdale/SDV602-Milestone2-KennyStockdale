@@ -23,8 +23,8 @@ def getfigure(des_name):
         if des_name == 'DES1':
             return figures.fish()
         if des_name == 'DES2':
-            return figures.line_plot1()
-        if des_name == 'DES3':
+            return figures.line_plot()
+        if des_name == 'DES3':``
             return figures.scatter_plots()
 
 

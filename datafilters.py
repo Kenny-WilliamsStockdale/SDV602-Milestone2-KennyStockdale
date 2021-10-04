@@ -5,16 +5,16 @@ def merge(newFile, currentFile):
     dc.append(newFile, currentFile)
 
 
-def localityData():  
+def fishAmountYear():  
     data = dc.data
     dictPie = {}
     for row in data:
 
-        if row[26] in dictPie.keys():
-            dictPie[row[26]] += 1
+        if row[19] in dictPie.keys():
+            dictPie[row[19]].append(row[10])
         else:
-            dictPie[row[26]] = 1
-
+            dictPie[row[19]] = [row[10]]
+            
     labels = list(dictPie.keys())
     values = list(dictPie.values())
     return labels, values
