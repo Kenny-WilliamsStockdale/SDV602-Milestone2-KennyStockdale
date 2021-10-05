@@ -6,6 +6,7 @@ import figures
 import datacontroller as dc
 import login
 import DES
+from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 
 matplotlib.use('TkAgg')
 
@@ -30,7 +31,7 @@ def getfigure(des_name):
 
 def show(nextScreen, previousScreen, des_name):
 
-    sg.set_options(element_padding=(5, 5))
+    # sg.set_options(element_padding=(3, 3))
 
     # ------ ANCHOR MENU SECTION ------ #
     menu_def = [['&File', ['&Open Upload', '&Open Merge', '&Logout', '&Exit']],
@@ -38,31 +39,48 @@ def show(nextScreen, previousScreen, des_name):
                     '&Size of Angler fish(DES1)', '&Angler fish observed(DES2)', '&Min and max depth of angler fish(DES3)']],
                 ['&Help', '&About...'],
                 ]
+    
+    
 
     def draw_figure(canvas, figure):
+        if canvas.children:
+            for child in canvas.winfo_children():
+                child.destroy()
         figure_canvas_agg = FigureCanvasTkAgg(figure, canvas)
         figure_canvas_agg.draw()
-        figure_canvas_agg.get_tk_widget().pack(side='top', fill='both', expand=1)
-        return figure_canvas_agg
+        NavigationToolbar2Tk.toolitems = [t for t in NavigationToolbar2Tk.toolitems if t[0] not in (
 
+        'Subplots', 'Back', 'Forward', 'Save')]
+
+        # pack_toolbar=False will make it easier to use a layout manager later on.
+
+        toolbar = NavigationToolbar2Tk(figure_canvas_agg, canvas, pack_toolbar=False)
+
+        toolbar.update()
+        figure_canvas_agg.get_tk_widget().pack(side='top', fill='both', expand=1)
+        toolbar.pack(side='top', fill='both', expand=1)
+        return figure_canvas_agg
 
     # ------ ANCHOR GUI/LAYOUT SECTION ------ #
     layout = [
         [sg.Menu(menu_def, tearoff=False, pad=(200, 1))],
         [sg.Canvas(key='-CANVAS-')],
-        [sg.Multiline(default_text='Data Information Summary:',
-                      size=(55, 11), font=('current 12')),
-         sg.Multiline(default_text='Chat System:',
-                      font=('current 12'), size=(55, 11))],
-        [sg.Button('Previous', font=('current 20')), sg.Button('Next', font=('current 20'))]]
+        [sg.Multiline(default_text='Chat History:',
+                      size=(55, 11), font=('current 12'), disabled=True),
+        sg.Frame(layout=[
+            
+        [sg.Multiline(size=(80, 7), font=('current 12'))],
+        [sg.Button('Send', size=(81, 0), font=('current 12'))],
+        ], title='Chat input', font=('current 12') )],
+        
+        [sg.Button('Previous', font=('current 20')), sg.Button('Next', font=('current 20') )]]
 
     window = sg.Window(des_name,
                        layout,
                        default_element_size=(12, 1),
                        default_button_element_size=(12, 1),
                        finalize=True,
-                       element_justification='center',
-                       size=(1000, 700))
+                       size=(1000, 720))
     
     fig = getfigure(des_name)
     fig_canvas_agg = draw_figure(window['-CANVAS-'].TKCanvas, fig)
