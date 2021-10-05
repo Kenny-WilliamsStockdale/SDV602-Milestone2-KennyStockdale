@@ -5,6 +5,7 @@ import matplotlib
 import figures
 import datacontroller as dc
 import login
+import DES
 
 matplotlib.use('TkAgg')
 
@@ -19,13 +20,12 @@ def delete_figure_agg(figure_agg):
 
 
 def getfigure(des_name):
-        import figures
         if des_name == 'DES1':
             return figures.fish()
         if des_name == 'DES2':
             return figures.line_plot()
         if des_name == 'DES3':
-            return figures.change()
+            return figures.stack_plot()
 
 
 def show(nextScreen, previousScreen, des_name):
@@ -35,7 +35,7 @@ def show(nextScreen, previousScreen, des_name):
     # ------ ANCHOR MENU SECTION ------ #
     menu_def = [['&File', ['&Open Upload', '&Open Merge', '&Logout', '&Exit']],
                 ['&Navigation', [
-                    '&Size of Angler fish(DES1)', '&Types of ownership(DES2)', '&Number of property owners(DES3)']],
+                    '&Size of Angler fish(DES1)', '&Angler fish observed(DES2)', '&Min and max depth of angler fish(DES3)']],
                 ['&Help', '&About...'],
                 ]
 
@@ -108,21 +108,16 @@ def show(nextScreen, previousScreen, des_name):
             
         if event == 'Size of Angler fish(DES1)':
             window.close()
-            show()
+            DES.one()
             window.close()
-        if event == 'Types of ownership(DES2)':
+        if event == 'Angler fish observed(DES2)':
             window.close()
-            show()
+            DES.two()
             window.close()
-        if event == 'Number of property owners(DES3)':
+        if event == 'Min and max depth of angler fish(DES3)':
             window.close()
-            show()
+            DES.three()
             window.close()
         if event == 'Logout':
             window.close()
             login.login_main()
-
-
-# template empty until parsed in data
-
-# class DataExplorerScreen()

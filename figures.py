@@ -1,6 +1,7 @@
 import datafilters as df
+import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
-import geopandas as gpd
+
 
 
 def fish():
@@ -10,6 +11,7 @@ def fish():
             shadow=True, startangle=0)
     # Equal aspect ratio ensures that pie is drawn as a circle.
     ax1.axis('equal')
+    ax1.legend(loc='upper right')
     plt.title('Size of Angler Fish in New Zealand waters (millimeters)')
     return plt.gcf()
 
@@ -23,27 +25,28 @@ def line_plot():
         labels.append(key)
         values.append(data[key])
     fig1, ax1 = plt.subplots(figsize=(10, 4.2))
+    ax1.set_ylabel('Number of fish')
+    ax1.set_xlabel('Year')
+    ax1.set_title('Angler fish observed')
+    blue_patch = mpatches.Patch(color='blue', label='Line')
+    plt.legend(handles=[blue_patch])
     plt.plot(labels, values)
     return plt.gcf()
 
+def stack_plot():
 
-# def markLocation():
-#     data = df.locationData()
+    min, max = df.depth()
+    idxes = range(0, len(min))
+    y1  = min
+    y2  = max
+    fig, ax = plt.subplots(figsize=(10, 4.2))
+    ax.stackplot(idxes, y1, y2)
+    ax.set_title('Min and max depth of angler fish examined')
+    ax.set_ylabel('min and max depth (meters)')
+    ax.set_xlabel('Index number of entries (ID)')
+    orange_patch = mpatches.Patch(color='orange', label='max-depth')
+    blue_patch = mpatches.Patch(color='blue', label='min-depth')
+    plt.legend(handles=[orange_patch,blue_patch])
+    
+    return plt.gcf()
 
-#     fig , ax = plt.subplots(figsize=(10, 4.2))
-#     countries = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
-
-#     countries[countries["name"] == "New Zealand"].plot(
-#         color="lightgrey", ax=ax)
-
-#     # Plot map
-
-#     data.plot(x="decimalLongitude", y="decimalLatitude", kind="scatter", colormap="YlOrRd",
-
-#               title=f"New Zealand Location", ax=ax)
-
-#     ax.grid(b=True, alpha=0.5)
-#     return plt.gcf()
-#     # ax.set_xlabel('Longtitude')
-
-#     # ax.set_ylabel('Latitude')

@@ -1,6 +1,5 @@
 import datacontroller as dc
 
-
 # def locationData():
 #     return dc.data2
 
@@ -50,3 +49,19 @@ def sizeFish():  # piechart data
     labels = list(barData.keys())
     values = list(barData.values())
     return labels, values
+
+def depth ():
+    data = dc.data
+    min = []
+    max = []
+    for row in data:
+        if row[27] != "" and row[28] != "":
+            min.append(int(row[27]))
+            max.append(int(row[28]))
+            
+    return min, max
+    
+
+#ranges from 25 - 1500
+# average 721 - 759
+
