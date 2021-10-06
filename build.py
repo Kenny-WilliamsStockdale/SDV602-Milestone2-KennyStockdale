@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib
 import figures
-import datacontroller as dc
+import data_controller as dc
 import login
 import DES
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
@@ -20,9 +20,9 @@ def delete_figure_agg(figure_agg):
     plt.close('all')
 
 
-def getfigure(des_name):
+def get_figure(des_name):
         if des_name == 'DES1':
-            return figures.fish()
+            return figures.pie()
         if des_name == 'DES2':
             return figures.line_plot()
         if des_name == 'DES3':
@@ -82,7 +82,7 @@ def show(nextScreen, previousScreen, des_name):
                        finalize=True,
                        size=(1000, 720))
     
-    fig = getfigure(des_name)
+    fig = get_figure(des_name)
     fig_canvas_agg = draw_figure(window['-CANVAS-'].TKCanvas, fig)
 
     # ------ ANCHOR LOOP & PROCESS BUTTON & MENU CHOICES ------ #
@@ -113,7 +113,7 @@ def show(nextScreen, previousScreen, des_name):
             dc.upload(file_name)
             if fig_canvas_agg:
                 delete_figure_agg(fig_canvas_agg)
-            fig = getfigure(des_name)
+            fig = get_figure(des_name)
             fig_canvas_agg = draw_figure(window['-CANVAS-'].TKCanvas, fig)
         if event == 'Open Merge':
             file_name = sg.PopupGetFile('Please select file to upload (the file to add to or merge in)',
@@ -121,7 +121,7 @@ def show(nextScreen, previousScreen, des_name):
             dc.merge(file_name)
             if fig_canvas_agg:
                 delete_figure_agg(fig_canvas_agg)
-            fig = getfigure(des_name)
+            fig = get_figure(des_name)
             fig_canvas_agg = draw_figure(window['-CANVAS-'].TKCanvas, fig)
             
         if event == 'Size of Angler fish(DES1)':

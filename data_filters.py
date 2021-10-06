@@ -1,8 +1,4 @@
-import datacontroller as dc
-
-# def locationData():
-#     return dc.data2
-
+import data_controller as dc
 
 def merge(newFile, currentFile):
     dc.append(newFile, currentFile)
@@ -61,7 +57,4 @@ def depth ():
             
     return min, max
     
-
-#ranges from 25 - 1500
-# average 721 - 759
 

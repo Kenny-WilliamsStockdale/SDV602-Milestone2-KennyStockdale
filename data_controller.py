@@ -28,7 +28,7 @@ def merge(file_path):
 
 
 def check_app_has_data():
-    import datacontroller as dc
+    import data_controller as dc
     import PySimpleGUI as sg
     from logging import error
     import sys
@@ -42,9 +42,3 @@ def check_app_has_data():
         if dc.data == []:
             error("App did not receive data. Exiting application.")
             sys.exit()
-
-# def readLocation(file_path):
-#     global data2
-#     data2 = pd.read_csv(file_path,
-#                        usecols=['decimalLatitude', 'decimalLongitude'])
-#     return data2

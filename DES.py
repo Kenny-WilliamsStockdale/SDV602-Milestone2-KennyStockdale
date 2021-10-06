@@ -1,5 +1,5 @@
 import build
-import datacontroller as dc
+import data_controller as dc
 
 def one ():
     dc.check_app_has_data()

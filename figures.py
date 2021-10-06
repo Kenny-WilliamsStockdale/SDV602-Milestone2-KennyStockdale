@@ -1,10 +1,10 @@
-import datafilters as df
+import data_filters as df
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 
 
 
-def fish():
+def pie():
     labels, values = df.sizeFish()
     fig1, ax1 = plt.subplots(figsize=(10, 4.2))
     ax1.pie(values, labels=labels, autopct='%1.1f%%',
