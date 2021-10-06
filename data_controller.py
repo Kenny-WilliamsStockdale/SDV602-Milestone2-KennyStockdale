@@ -2,7 +2,7 @@ import csv
 
 data = []
 
-
+# ------ANCHOR UPLOAD SECTION------
 def upload(file_path):
     global data
     with open(file_path, newline='') as csvFile:
@@ -13,7 +13,7 @@ def upload(file_path):
     headers = data.pop(0)
     return data
 
-
+# ------ANCHOR MERGE SECTION------
 def merge(file_path):
     global data
     with open(file_path, newline='') as csvFile:
@@ -26,8 +26,8 @@ def merge(file_path):
         data.append(row)
     return data
 
-
-def check_app_has_data():
+# ------ANCHOR INITIAL CHECK AND THEN UPLOAD SECTION------
+def check_app_has_data(): # checks if the application has data already loaded. If not prompts user to load data.
     import data_controller as dc
     import PySimpleGUI as sg
     from logging import error

@@ -1,10 +1,6 @@
 import data_controller as dc
 
-def merge(newFile, currentFile):
-    dc.append(newFile, currentFile)
-
-
-def fishAmountYear():
+def fishAmountYear():  #Lineplot data
     data = dc.data
     dictline = {}
     for row in data:
@@ -17,7 +13,7 @@ def fishAmountYear():
     return (dictline)
 
 
-def sizeFish():  # piechart data
+def sizeFish():  # Piechart data
     data = dc.data
     barData = {
         '1-50': 0,
@@ -46,7 +42,7 @@ def sizeFish():  # piechart data
     values = list(barData.values())
     return labels, values
 
-def depth ():
+def depth ():  # Stackplot data
     data = dc.data
     min = []
     max = []
@@ -58,3 +54,5 @@ def depth ():
     return min, max
     
 
+# def merge(newFile, currentFile):
+#     dc.append(newFile, currentFile)

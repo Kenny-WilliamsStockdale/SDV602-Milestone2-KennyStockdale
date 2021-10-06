@@ -1,3 +1,6 @@
+"""[Simple Data Explorer screen template
+    that can be used as a module for different displays of data]
+"""
 import PySimpleGUI as sg
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -9,10 +12,6 @@ import DES
 from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 
 matplotlib.use('TkAgg')
-
-"""[Simple Data Explorer screen template
-    that can be used as a module for different displays of data]
-"""
 
 
 def delete_figure_agg(figure_agg):
@@ -31,7 +30,6 @@ def get_figure(des_name):
 
 def show(nextScreen, previousScreen, des_name):
 
-    # sg.set_options(element_padding=(3, 3))
 
     # ------ ANCHOR MENU SECTION ------ #
     menu_def = [['&File', ['&Open Upload', '&Open Merge', '&Logout', '&Exit']],
@@ -41,7 +39,7 @@ def show(nextScreen, previousScreen, des_name):
                 ]
     
     
-
+    # ------ ANCHOR DRAW CANVAS SECTION ------ #
     def draw_figure(canvas, figure):
         if canvas.children:
             for child in canvas.winfo_children():
@@ -49,13 +47,11 @@ def show(nextScreen, previousScreen, des_name):
         figure_canvas_agg = FigureCanvasTkAgg(figure, canvas)
         figure_canvas_agg.draw()
         NavigationToolbar2Tk.toolitems = [t for t in NavigationToolbar2Tk.toolitems if t[0] not in (
-
         'Subplots', 'Back', 'Forward', 'Save')]
 
         # pack_toolbar=False will make it easier to use a layout manager later on.
 
         toolbar = NavigationToolbar2Tk(figure_canvas_agg, canvas, pack_toolbar=False)
-
         toolbar.update()
         figure_canvas_agg.get_tk_widget().pack(side='top', fill='both', expand=1)
         toolbar.pack(side='top', fill='both', expand=1)
