@@ -1,6 +1,13 @@
+"""Data from csv uploaded has been filtered into data that can be used in a graph/display format.
+
+"""
 import data_controller as dc
 
 def fishAmountYear():  #Lineplot data
+    """
+    Returns:
+        [dictionary]: the number of fish in any given year, observed.
+    """
     data = dc.data
     dictline = {}
     for row in data:
@@ -14,6 +21,10 @@ def fishAmountYear():  #Lineplot data
 
 
 def sizeFish():  # Piechart data
+    """
+    Returns:
+        [dictionary]: returns the size of fish in selected categories of sizes in millimeters
+    """
     data = dc.data
     barData = {
         '1-50': 0,
@@ -43,6 +54,10 @@ def sizeFish():  # Piechart data
     return labels, values
 
 def depth ():  # Stackplot data
+    """
+    Returns:
+        [lists]: returns min and max size of observed fish in depth (meters)
+    """
     data = dc.data
     min = []
     max = []

@@ -5,6 +5,3 @@ import login
 # ------ANCHOR START MAIN APP SECTION------
 if __name__ == "__main__":
     login.login_main()
-
-
-#TODO comments and doc strings

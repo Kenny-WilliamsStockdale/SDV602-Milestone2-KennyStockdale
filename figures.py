@@ -1,3 +1,6 @@
+"""draws the graphs with reference to the data in the data_filters.py file
+
+"""
 import data_filters as df
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
@@ -5,6 +8,11 @@ import matplotlib.pyplot as plt
 
 # ------ANCHOR PIE CHART SECTION------
 def pie():
+    """pie chart with imported data_filters csv data
+
+    Returns:
+        [function]: get the current plot figure
+    """
     labels, values = df.sizeFish()
     fig1, ax1 = plt.subplots(figsize=(10, 4.2))
     ax1.pie(values, labels=labels, autopct='%1.1f%%',
@@ -17,6 +25,11 @@ def pie():
 
 # ------ANCHOR LINE PLOT SECTION------
 def line_plot():
+    """line plot with imported data_filters csv data
+
+    Returns:
+        [function]: get the current plot figure
+    """
     labels = []
     values = []
     data = df.fishAmountYear()
@@ -35,6 +48,11 @@ def line_plot():
 
 # ------ANCHOR STACK PLOT SECTION------
 def stack_plot():
+    """stack plot with imported data_filters csv data
+
+    Returns:
+        [function]: get the current plot figure
+    """
     min, max = df.depth()
     idxes = range(0, len(min))
     y1  = min

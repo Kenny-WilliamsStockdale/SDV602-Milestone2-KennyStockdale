@@ -1,5 +1,5 @@
-"""[Simple Data Explorer screen template
-    that can be used as a module for different displays of data]
+"""Simple Data Explorer screen template
+    that can be used as a module for different displays of data
 """
 import PySimpleGUI as sg
 import matplotlib.pyplot as plt
@@ -13,23 +13,44 @@ from matplotlib.backends.backend_tkagg import NavigationToolbar2Tk
 
 matplotlib.use('TkAgg')
 
-
+ # ------ ANCHOR DELETE CANVAS SECTION ------ #
 def delete_figure_agg(figure_agg):
+    """Deletes the figure and canvas upon call. Used for switching between data explorer screens
+    Args:
+        figure_agg 
+    """
     figure_agg.get_tk_widget().forget()
     plt.close('all')
 
-
+ # ------ ANCHOR GET GRAPH DATA SECTION ------ #
 def get_figure(des_name):
-        if des_name == 'DES1':
-            return figures.pie()
-        if des_name == 'DES2':
-            return figures.line_plot()
-        if des_name == 'DES3':
-            return figures.stack_plot()
+    """gets graph figures to print onto canvas/Data Explorer screen template
+
+    Args:
+        des_name ([String]): [Title of window]
+
+    Returns:
+        [function]: [returns the figure.py graph function to draw onto canvas]
+    """
+    if des_name == 'Data Screen Explorer 1':
+        return figures.pie()
+    if des_name == 'Data Screen Explorer 2':
+        return figures.line_plot()
+    if des_name == 'Data Screen Explorer 3':
+        return figures.stack_plot()
 
 
 def show(nextScreen, previousScreen, des_name):
+    """Generates a template for data explorer screens. 
+    As every screen has the same template it makes sense to bundle it together.
+    Allows for basic navigation between all generated screens
 
+    Args:
+        nextScreen ([function]): uses DES.py to parse information through the build to dictate what screen is shown
+        previousScreen ([function]): uses DES.py to parse information through the build to dictate what screen is shown
+        des_name ([string]): returns which DES screen name is shown and selected
+
+    """
 
     # ------ ANCHOR MENU SECTION ------ #
     menu_def = [['&File', ['&Open Upload', '&Open Merge', '&Logout', '&Exit']],
@@ -41,6 +62,12 @@ def show(nextScreen, previousScreen, des_name):
     
     # ------ ANCHOR DRAW CANVAS SECTION ------ #
     def draw_figure(canvas, figure):
+        """ Draws the figure for the canvas. Draws the NavigationToolbar2Tk to use with the figure.
+
+        Args:
+            canvas : figure : returns the figure canvas aggregation object
+
+        """
         if canvas.children:
             for child in canvas.winfo_children():
                 child.destroy()

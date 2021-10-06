@@ -1,9 +1,21 @@
+"""controlls how the test data is used throughout the application.
+Allows for uploading and merging of data
+  
+"""
 import csv
 
 data = []
 
 # ------ANCHOR UPLOAD SECTION------
 def upload(file_path):
+    """takes local data and uploads it to an empty list to be read by the application
+
+    Args:
+        file_path: gets the file path that relates to the data being uploaded
+
+    Returns:
+        [list]: returns a list of data contained in the uploaded csv file
+    """
     global data
     with open(file_path, newline='') as csvFile:
         rows = csv.reader(csvFile, delimiter=',')
@@ -15,6 +27,14 @@ def upload(file_path):
 
 # ------ANCHOR MERGE SECTION------
 def merge(file_path):
+    """takes local data and merges it to an empty list to be read by the application
+
+    Args:
+        file_path: gets the file path that relates to the data being merged
+
+    Returns:
+        [list]: returns a list of data including the newly appended data to the list
+    """
     global data
     with open(file_path, newline='') as csvFile:
         rows = csv.reader(csvFile, delimiter=',')
@@ -27,7 +47,10 @@ def merge(file_path):
     return data
 
 # ------ANCHOR INITIAL CHECK AND THEN UPLOAD SECTION------
-def check_app_has_data(): # checks if the application has data already loaded. If not prompts user to load data.
+def check_app_has_data():
+    """checks if the application has data already loaded. If not prompts user to load data.
+    
+    """
     import data_controller as dc
     import PySimpleGUI as sg
     from logging import error
